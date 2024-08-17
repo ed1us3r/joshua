@@ -5,7 +5,7 @@ WORKDIR /tmp/
 RUN dnf install -y git
 
 # Prepare next Step
-COPY custom-util/* .
+COPY ../custom-util/* .
 
 
 # Install custom util
