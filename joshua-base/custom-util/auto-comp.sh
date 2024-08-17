@@ -1,0 +1,1 @@
+COMPLETIONS_DIR=/usr/local/share/bash-completion/completions
