@@ -58,7 +58,7 @@ jobs:
         uses: dodopizza/cosign-sign-push-action@0.0.7
         with:
           image-tags: ${{ env.IMAGE_NAME }}:${{ env.IMAGE_TAG }}
-          image-digest: ${{ steps.build-and-push-joshua-base.outputs.digest }}
+          image-digest: ${{ steps.push-to-ghcr.outputs.digest }}
           cosign-private-key: ${{ secrets.COSIGN_PRIVATE_KEY }}
           cosign-password: ${{ secrets.COSIGN_PASSWORD }}
 
