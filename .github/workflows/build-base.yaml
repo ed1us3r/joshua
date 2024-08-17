@@ -5,12 +5,12 @@ on:
     branches:
       - main
     paths:
-      - /joshoa-base/Containerfile
+      - /joshua-base/Containerfile
   pull_request:
     branches:
       - main
     paths:
-      - /joshoa-base/Containerfile
+      - /joshua-base/Containerfile
 
 env:
   IMAGE_NAME: joshua-base
