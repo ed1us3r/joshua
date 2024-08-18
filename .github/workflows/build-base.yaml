@@ -53,11 +53,11 @@ jobs:
 
       - name: Set up Cosign and sign images
         uses: sigstore/cosign-installer@v3.5.0
-          env:
-            IMAGE_NAME: joshua-base
-            REGISTRY: ghcr.io
-            IMAGE_TAG: latest
-            REGISTRY_AUTH_FILE: /run/user/1001/containers/auth.json
+        env:
+          IMAGE_NAME: joshua-base
+          REGISTRY: ghcr.io
+          IMAGE_TAG: latest
+          REGISTRY_AUTH_FILE: /run/user/1001/containers/auth.json
         with:
           image-tags: ${{ env.IMAGE_NAME }}:${{ env.IMAGE_TAG }}
           image-digest: ${{ steps.push-to-ghcr.outputs.digest }}
