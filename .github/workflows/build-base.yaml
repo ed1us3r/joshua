@@ -62,10 +62,10 @@ jobs:
           image-digest: ${{ steps.build-and-push.outputs.digest }}
           cosign-private-key: ${{ secrets.COSIGN_PRIVATE_KEY }}
           cosign-password: ${{ secrets.COSIGN_PASSWORD }}
-        run: |
-          echo "## Sign Image: ${{ image-tags}} : ${{ image-digest}}"
-          image=${{ image-tags}}:${{ image-digest}}
-          cosign sign --yes --key env://COSIGN_PRIVATE_KEY ${image}
+#        run: |
+#          echo "## Sign Image: ${{ image-tags}} : ${{ image-digest}}"
+#          image=${{ image-tags}}:${{ image-digest}}
+#          cosign sign --yes --key env://COSIGN_PRIVATE_KEY ${image}
 
       - name: Output image tags
         env:
