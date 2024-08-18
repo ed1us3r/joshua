@@ -13,7 +13,8 @@ on:
       - /joshua-base/Containerfile
 
 env:
-  IMAGE_NAME: joshua-base
+  IMAGE_NAME: ghcr.io/ed1us3r/joshua-base
+  IMAGE: joshua-base
   REGISTRY: ghcr.io
   IMAGE_TAG: latest
 
@@ -31,10 +32,10 @@ jobs:
         id: build-image
         uses: redhat-actions/buildah-build@v2
         with:
-          image: ${{ env.IMAGE_NAME }}
+          image: ${{ env.IMAGE }}
           tags: latest ${{ github.sha }}
           containerfiles: |
-            ./${{ env.IMAGE_NAME }}/Containerfile            
+            ./${{ env.IMAGE}}/Containerfile            
 
       - name: Log in to the GitHub Container registry
         uses: redhat-actions/podman-login@v1
@@ -53,20 +54,18 @@ jobs:
 
       - name: Set up Cosign and sign images
         uses: sigstore/cosign-installer@v3.5.0
+
+      - name: Sign container images with a key
+        uses: dodopizza/cosign-sign-push-action@0.0.7
         with:
           image-tags: ${{ env.IMAGE_NAME }}:${{ env.IMAGE_TAG }}
-          image-digest: ${{ steps.push-to-ghcr.outputs.digest }}
+          image-digest: ${{ steps.build-and-push.outputs.digest }}
           cosign-private-key: ${{ secrets.COSIGN_PRIVATE_KEY }}
           cosign-password: ${{ secrets.COSIGN_PASSWORD }}
-          IMAGE_NAME: joshua-base
-          REGISTRY: ghcr.io
-          IMAGE_TAG: latest
-          REGISTRY_AUTH_FILE: /run/user/1001/containers/auth.json
         run: |
           echo "## Sign Image: ${{ image-tags}} : ${{ image-digest}}"
           image=${{ image-tags}}:${{ image-digest}}
           cosign sign --yes --key env://COSIGN_PRIVATE_KEY ${image}
-
 
       - name: Output image tags
         env:
