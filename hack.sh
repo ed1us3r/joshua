@@ -1,6 +1,6 @@
 #!/bin/env bash
 
-# Set desired name via CLI argument, but default to "toolbox"
+# Set desired name via CLI argument, but default to "joshua"
 name="${1:-joshua}"
 
 # mark old images for deletion
