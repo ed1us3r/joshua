@@ -5,55 +5,45 @@ WORKDIR /tmp/
 RUN dnf install -y git
 
 # Prepare next Step
-COPY ../custom-util/* .
+COPY ../custom-util/get-powerline-shell.sh .
 
 
 # Install custom util
-RUN ./get-cosign.sh && ./get-kubectl.sh
+RUN ./get-powerline-shell.sh
 
 
 FROM registry.fedoraproject.org/fedora-toolbox:39
 
 ARG NAME=joshua-base
+ARG TYPE=base
 ARG BIN_DIR=/usr/local/bin
 
 
 LABEL name="$NAME" \
     type="base" \
-    summary="joshua toolbox container" \
+    summary="joshua base container" \
     maintainer="ed1us3r" \
     author="ed1us3r"
 
-ENV EDITOR=nvim
-
+ENV EDITOR=nvim \
+    CONTAINER_ENV="true" \
+    container_env="true" \
+    image_name="$NAME" \
+    image_type="$TYPE" \
+    image_summary="joshua base container" \
+    image_maintainer="ed1us3r" \
+    image_author="ed1us3r"
 
 # Install packages
 RUN  yum -y upgrade \
   && yum -y install \
-  tmux \
   git \
   nnn \
   lsd \
-  thefuck \
-  tldr \
-  python3-pip \
   ripgrep \
   fd-find \
-  neovim \
   && yum clean all
 
 
-# Copy Binaries from getter
-
-COPY --from=getter --chown=root:root /usr/bin/cosign-linux-amd64 ${BIN_DIR}//cosign-linux-amd64
-
-COPY --from=getter --chown=root:root /root/.krew/bin/kubectl* ${BIN_DIR}/kubectl-plugins/
-
-COPY --from=getter --chown=root:root ${BIN_DIR}/kubectl ${BIN_DIR}/kubectl
-
-# Create some Sym Links
-RUN ln -s ${BIN_DIR}/cosign-linux-amd64 ${BIN_DIR}/cosign \
-    && ln -s ${BIN_DIR}/kubectl-plugins/kubectl-krew ${BIN_DIR}/krew \
-    && ln -s ${BIN_DIR}/kubectl-plugins/kubectl-cnpg ${BIN_DIR}/kubectl-cnpg \
-    && ln -s ${BIN_DIR}/kubectl-plugins/kubectl-tree ${BIN_DIR}/kubectl-tree \ 
-    && ln -s ${BIN_DIR}/kubectl-plugins/kubectl-flame ${BIN_DIR}/kubectl-flame 
+# Copy Bins
+COPY --from=getter --chown=root:root ${BIN_DIR}/powerline-shell ${BIN_DIR}/powerline-shell

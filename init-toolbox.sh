@@ -31,6 +31,6 @@ for dir in joshua-*/ ; do
         #pubkey=`curl `
         
         #rc=$?
-        exit -1
+        exit 2 
     fi
 done
