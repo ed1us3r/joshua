@@ -1,25 +1,25 @@
-name: build-joshua-base
+name: build-joshua-net
 on:
   workflow_dispatch:
   push:
     branches:
       - main
     paths:
-      - /joshua-base/Containerfile
+      - /joshua-net/Containerfile
   pull_request:
     branches:
       - main
     paths:
-      - /joshua-base/Containerfile
+      - /joshua-net/Containerfile
 
 env:
-  IMAGE_NAME: ghcr.io/ed1us3r/joshua-base
-  IMAGE: joshua-base
+  IMAGE_NAME: ghcr.io/ed1us3r/joshua-net
+  IMAGE: joshua-net
   REGISTRY: ghcr.io
   IMAGE_TAG: latest
 
 jobs:
-  build-and-push-joshua-base:
+  build-and-push-joshua-net:
     runs-on: ubuntu-latest
     permissions:
       contents: read
@@ -28,7 +28,7 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v3
 
-      - name: Build Base image
+      - name: Build net image
         id: build-image
         uses: redhat-actions/buildah-build@v2
         with:
