@@ -2,7 +2,8 @@ FROM registry.access.redhat.com/ubi9/ubi-init:latest  as getter
 
 WORKDIR /tmp/
 
-RUN dnf install -y git
+RUN dnf install -y git \
+  python3 
 
 # Prepare next Step
 COPY ../custom-util/get-powerline-shell.sh .
