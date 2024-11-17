@@ -7,6 +7,7 @@ RUN dnf install -y git
 # Prepare next Step
 COPY ../custom-util/* .
 
+RUN curl -sLS https://get.arkade.dev | sudo sh
 
 # Install custom util
 RUN ./get-cosign.sh && ./get-kubectl.sh
@@ -45,7 +46,10 @@ RUN  yum -y upgrade \
 
 # Copy Binaries from getter
 
-COPY --from=getter --chown=root:root /usr/bin/cosign-linux-amd64 ${BIN_DIR}//cosign-linux-amd64
+
+COPY --from=getter --chown=root:root /usr/local/bin/arkade ${BIN_DIR}/arkade
+
+COPY --from=getter --chown=root:root /usr/bin/cosign-linux-amd64 ${BIN_DIR}/cosign-linux-amd64
 
 COPY --from=getter --chown=root:root /root/.krew/bin/kubectl* ${BIN_DIR}/kubectl-plugins/
 
