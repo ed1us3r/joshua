@@ -45,6 +45,11 @@ RUN  yum -y upgrade \
   neovim \
   && yum clean all
 
+# Arkade shit
+# Note: you can also run without `sudo` and move the binary yourself
+RUN curl -sLS https://get.arkade.dev | sh
+	arkade get kubectl \
+   	arkade get helm 
 
 # Copy Binaries from getter
 
