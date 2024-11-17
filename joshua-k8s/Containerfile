@@ -7,7 +7,7 @@ RUN dnf install -y git
 # Prepare next Step
 COPY ../custom-util/* .
 
-RUN curl -sLS https://get.arkade.dev | sudo sh
+RUN curl -sLS https://get.arkade.dev | sh
 
 # Install custom util
 RUN ./get-cosign.sh && ./get-kubectl.sh
