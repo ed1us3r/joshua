@@ -38,18 +38,13 @@ ENV EDITOR=nvim \
 RUN  yum -y upgrade \
   && yum -y install \
   git \
-  nnn \
-  lsd \
-  ripgrep \
-  fd-find \
-  neovim \
   && yum clean all
 
 # Arkade shit
 # Note: you can also run without `sudo` and move the binary yourself
-RUN curl -sLS https://get.arkade.dev | sh
-	arkade get kubectl \
-   	arkade get helm 
+RUN curl -sLS https://get.arkade.dev | sh &&
+	&& arkade get kubectl \
+   	&& arkade get helm 
 
 # Copy Binaries from getter
 
