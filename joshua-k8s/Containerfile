@@ -41,8 +41,6 @@ RUN  yum -y upgrade \
   git \
   && yum clean all
 
-# Arkade shit
-# Note: you can also run without `sudo` and move the binary yourself
 
 # Copy Binaries from getter
 
@@ -61,3 +59,10 @@ RUN ln -s ${BIN_DIR}/cosign-linux-amd64 ${BIN_DIR}/cosign \
     && ln -s ${BIN_DIR}/kubectl-plugins/kubectl-cnpg ${BIN_DIR}/kubectl-cnpg \
     && ln -s ${BIN_DIR}/kubectl-plugins/kubectl-tree ${BIN_DIR}/kubectl-tree \ 
     && ln -s ${BIN_DIR}/kubectl-plugins/kubectl-flame ${BIN_DIR}/kubectl-flame 
+
+
+# Arkade shit
+# Note: you can also run without `sudo` and move the binary yourself
+RUN export PATH=$PATH:$HOME/.arkade/bin/ \
+	&& arkade get helm \
+	&& arkade get yq 
