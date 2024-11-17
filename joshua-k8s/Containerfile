@@ -12,7 +12,7 @@ COPY ../custom-util/* .
 RUN ./get-cosign.sh && ./get-kubectl.sh
 
 
-FROM registry.access.redhat.com/ubi9/ubi:latest
+FROM registry.access.redhat.com/ubi9/toolbox:latest
 
 ARG NAME=joshua-base
 ARG TYPE=base
