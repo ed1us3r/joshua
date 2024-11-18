@@ -67,8 +67,9 @@ RUN ln -s ${BIN_DIR}/cosign-linux-amd64 ${BIN_DIR}/cosign \
 # Arkade shit
 # Note: you can also run without `sudo` and move the binary yourself
 ENV PATH="$PATH:$HOME/.arkade/bin/" \
-    PATH="${KREW_ROOT:-$HOME/.krew}/bin:$PATH"
-
+    PATH="${KREW_ROOT:-$HOME/.krew}/bin:$PATH" \
+    PATH=~/.kubectx:\$PATH
+	
 
 RUN arkade get helm \
 	&& arkade get popeye \
