@@ -51,6 +51,8 @@ COPY --from=getter --chown=root:root /usr/bin/cosign-linux-amd64 ${BIN_DIR}/cosi
 
 COPY --from=getter --chown=root:root /root/.krew/bin/kubectl* ${BIN_DIR}/kubectl-plugins/
 
+COPY --from=getter --chown=root:root ${BIN_DIR}/kubecolor ${BIN_DIR}/kubecolor
+
 COPY --from=getter --chown=root:root ${BIN_DIR}/kubectl ${BIN_DIR}/kubectl
 
 # Create some Sym Links
@@ -58,7 +60,7 @@ RUN ln -s ${BIN_DIR}/cosign-linux-amd64 ${BIN_DIR}/cosign \
     && ln -s ${BIN_DIR}/kubectl-plugins/kubectl-krew ${BIN_DIR}/krew \
     && ln -s ${BIN_DIR}/kubectl-plugins/kubectl-cnpg ${BIN_DIR}/kubectl-cnpg \
     && ln -s ${BIN_DIR}/kubectl-plugins/kubectl-tree ${BIN_DIR}/kubectl-tree \ 
-    && ln -s ${BIN_DIR}/kubectl-plugins/kubectl-flame ${BIN_DIR}/kubectl-flame 
+    && ln -s ${BIN_DIR}/kubectl-plugins/kubectl-flame ${BIN_DIR}/kubectl-flame
 
 
 # Arkade shit

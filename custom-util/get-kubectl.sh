@@ -29,3 +29,9 @@ kubectl-krew install cnpg
 kubectl-krew install tree
 kubectl-krew install ctx
 kubectl-krew install ns
+
+
+# get Color prompt
+#
+curl -L https://github.com/kubecolor/kubecolor/releases/download/v0.4.0/kubecolor_0.4.0_linux_amd64.tar.gz -o /usr/local/bin/kubecolor
+chmod +x /usr/local/bin/kubecolor
