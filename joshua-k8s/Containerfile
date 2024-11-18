@@ -84,8 +84,7 @@ RUN curl -Lo ./kind https://kind.sigs.k8s.io/dl/v0.25.0/kind-linux-amd64 \
  && chmod +x ./kind \
  && sudo mv ./kind /usr/local/bin/kind
 
-RUN curl https://raw.githubusercontent.com/jonmosco/kube-ps1/refs/heads/master/kube-ps1.sh
--o ${BIN_DIR}/kube-ps1.sh \
+RUN curl https://raw.githubusercontent.com/jonmosco/kube-ps1/refs/heads/master/kube-ps1.sh -o ${BIN_DIR}/kube-ps1.sh \
   && chmod +x ${BIN_DIR}/kube-ps1.sh \
   && source ${BIN_DIR}/kube-ps1.sh \
   && PS1='[\u@\h \W $(kube_ps1)]\$ '
