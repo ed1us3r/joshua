@@ -35,13 +35,13 @@ COMPDIR=$(pkg-config --variable=completionsdir bash-completion)
 
 # get Color prompt
 #
-curl -L https://github.com/kubecolor/kubecolor/releases/download/v0.4.0/kubecolor_0.4.0_linux_amd64.tar.gz -o /tmp/
+curl -L https://github.com/kubecolor/kubecolor/releases/download/v0.4.0/kubecolor_0.4.0_linux_amd64.tar.gz -o /tmp/kubecolor_0.4.0_linux_amd64.tar.gz
 tar -xzvf /tmp/kubecolor_0.4.0_linux_amd64.tar.gz 
 mv /tmp/kubecolor /usr/local/bin/kubecolor
 chmod +x /usr/local/bin/kubecolor
 
 # helmify
-curl -L https://github.com/arttor/helmify/releases/download/v0.4.15/helmify_Linux_x86_64.tar.gz -o /tmp/
+curl -L https://github.com/arttor/helmify/releases/download/v0.4.15/helmify_Linux_x86_64.tar.gz -o /tmp/helmify_Linux_x86_64.tar.gz
 tar -xzvf /tmp/helmify_Linux_x86_64.tar.gz
 mv /tmp/helmify /usr/local/bin/helmify
 chmod +x /usr/local/bin/helmify
