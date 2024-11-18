@@ -60,8 +60,9 @@ RUN ln -s ${BIN_DIR}/cosign-linux-amd64 ${BIN_DIR}/cosign \
     && ln -s ${BIN_DIR}/kubectl-plugins/kubectl-krew ${BIN_DIR}/krew \
     && ln -s ${BIN_DIR}/kubectl-plugins/kubectl-cnpg ${BIN_DIR}/kubectl-cnpg \
     && ln -s ${BIN_DIR}/kubectl-plugins/kubectl-tree ${BIN_DIR}/kubectl-tree \ 
-    && ln -s ${BIN_DIR}/kubectl-plugins/kubectl-flame ${BIN_DIR}/kubectl-flame
-
+    && ln -s ${BIN_DIR}/kubectl-plugins/kubectl-flame ${BIN_DIR}/kubectl-flame \
+    && ln -s ${BIN_DIR}/kubectl-plugins/kubectl-ctx ${BIN_DIR}/kubectl-ns \
+    && ln -s ${BIN_DIR}/kubectl-plugins/kubectl-ns ${BIN_DIR}/kubectl-ns
 
 # Arkade shit
 # Note: you can also run without `sudo` and move the binary yourself
@@ -75,7 +76,8 @@ RUN arkade get helm \
 	&& arkade get helmfile \
 	&& sudo mv $HOME/.arkade/bin/popeye ${BIN_DIR}/popeye \
 	&& sudo mv $HOME/.arkade/bin/helm ${BIN_DIR}/helm \
-	&& sudo mv $HOME/.arkade/bin/yq ${BIN_DIR}/yq
+	&& sudo mv $HOME/.arkade/bin/yq ${BIN_DIR}/yq \
+	&& sudo chmod +x ${BIN_DIR}/*	
 
 # install k3d
 RUN wget -q -O - https://raw.githubusercontent.com/k3d-io/k3d/main/install.sh | bash
