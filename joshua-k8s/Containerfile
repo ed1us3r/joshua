@@ -53,6 +53,8 @@ COPY --from=getter --chown=root:root /root/.krew/bin/kubectl* ${BIN_DIR}/kubectl
 
 COPY --from=getter --chown=root:root ${BIN_DIR}/kubecolor ${BIN_DIR}/kubecolor
 
+COPY --from=getter --chown=root:root ${BIN_DIR}/helmify ${BIN_DIR}/helmify
+
 COPY --from=getter --chown=root:root ${BIN_DIR}/kubectl ${BIN_DIR}/kubectl
 
 # Create some Sym Links
