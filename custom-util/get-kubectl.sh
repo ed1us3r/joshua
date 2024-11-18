@@ -33,5 +33,7 @@ kubectl-krew install ns
 
 # get Color prompt
 #
-curl -L https://github.com/kubecolor/kubecolor/releases/download/v0.4.0/kubecolor_0.4.0_linux_amd64.tar.gz -o /usr/local/bin/kubecolor
+curl -L https://github.com/kubecolor/kubecolor/releases/download/v0.4.0/kubecolor_0.4.0_linux_amd64.tar.gz -o /tmp/
+tar -xzvf /tmp/kubecolor_0.4.0_linux_amd64.tar.gz 
+mv /tmp/kubecolor /usr/local/bin/kubecolor
 chmod +x /usr/local/bin/kubecolor
