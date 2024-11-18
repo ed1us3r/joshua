@@ -63,11 +63,18 @@ RUN ln -s ${BIN_DIR}/cosign-linux-amd64 ${BIN_DIR}/cosign \
 
 # Arkade shit
 # Note: you can also run without `sudo` and move the binary yourself
-ENV PATH="$PATH:$HOME/.arkade/bin/"
+ENV PATH="$PATH:$HOME/.arkade/bin/" \
+    PATH="${KREW_ROOT:-$HOME/.krew}/bin:$PATH"
+
 
 RUN arkade get helm \
+	&& arkade get popeye \
 	&& arkade get yq \
-	&& arkade get helmfile 
+	&& arkade get helmfile \
+	&& sudo mv $HOME/.arkade/bin/popey ${BIN_DIR}/popeye \
+	&& sudo mv $HOME/.arkade/bin/helm ${BIN_DIR}/helm \
+	&& sudo mv $HOME/.arkade/bin/yq ${BIN_DIR}/yq
+
 # install k3d
 RUN wget -q -O - https://raw.githubusercontent.com/k3d-io/k3d/main/install.sh | bash
 
@@ -83,7 +90,7 @@ RUN curl -Lo ./kind https://kind.sigs.k8s.io/dl/v0.25.0/kind-linux-amd64 \
 ## If bash-completion is not installed on Linux, install the 'bash-completion' package
 ## via your distribution's package manager.
 ## Load the kubectl completion code for bash into the current shell
-RUN source <(kubectl completion bash) \
-  && kubectl completion bash > ~/.kube/completion.bash.inc \
-  && printf "source '$HOME/.kube/completion.bash.inc'" >> $HOME/.bash_profile \
-  && source $HOME/.bash_profile
+#RUN source <(kubectl completion bash) \
+#  && kubectl completion bash > ~/.kube/completion.bash.inc \
+#  && printf "source '$HOME/.kube/completion.bash.inc'" >> $HOME/.bash_profile \
+#  && source $HOME/.bash_profile

@@ -27,4 +27,5 @@ export PATH="${KREW_ROOT:-$HOME/.krew}/bin:$PATH"
 kubectl-krew install flame
 kubectl-krew install cnpg
 kubectl-krew install tree
-
+kubectl-krew install ctx
+kubectl-krew install ns
