@@ -71,7 +71,7 @@ RUN arkade get helm \
 	&& arkade get popeye \
 	&& arkade get yq \
 	&& arkade get helmfile \
-	&& sudo mv $HOME/.arkade/bin/popey ${BIN_DIR}/popeye \
+	&& sudo mv $HOME/.arkade/bin/popeye ${BIN_DIR}/popeye \
 	&& sudo mv $HOME/.arkade/bin/helm ${BIN_DIR}/helm \
 	&& sudo mv $HOME/.arkade/bin/yq ${BIN_DIR}/yq
 
