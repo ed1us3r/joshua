@@ -2,7 +2,7 @@ FROM registry.access.redhat.com/ubi9/ubi-init:latest  as getter
 
 WORKDIR /tmp/
 
-RUN dnf install -y python3 python
+RUN dnf install -y python3 python git
 
 # Prepare next Step
 COPY ../custom-util/* .
