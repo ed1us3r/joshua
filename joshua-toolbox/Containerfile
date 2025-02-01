@@ -37,6 +37,7 @@ ENV EDITOR=nvim \
 # Install packages
 RUN  yum -y upgrade \
   && yum -y install \
+  fzf \
   tmux \
   git \
   nnn \

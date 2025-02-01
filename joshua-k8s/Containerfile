@@ -53,6 +53,8 @@ COPY --from=getter --chown=root:root /root/.krew/bin/kubectl* ${BIN_DIR}/kubectl
 
 COPY --from=getter --chown=root:root ${BIN_DIR}/kubecolor ${BIN_DIR}/kubecolor
 
+COPY --from=getter --chown=root:root ${BIN_DIR}/kubectl-rsh ${BIN_DIR}/kubectl-rsh
+
 COPY --from=getter --chown=root:root ${BIN_DIR}/helmify ${BIN_DIR}/helmify
 
 COPY --from=getter --chown=root:root ${BIN_DIR}/kubectl ${BIN_DIR}/kubectl
@@ -95,6 +97,11 @@ RUN curl https://raw.githubusercontent.com/jonmosco/kube-ps1/refs/heads/master/k
   && chmod +x ${BIN_DIR}/kube-ps1.sh \
   && source ${BIN_DIR}/kube-ps1.sh \
   && PS1='[\u@\h \W $(kube_ps1)]\$ '
+
+# Install helm plugins
+RUN helm plugin install https://github.com/ContainerSolutions/helm-monitor \
+   &&  helm plugin install https://github.com/adamreese/helm-nuke \
+
 
 # add kubectl completion
 # Installing bash completion on Linux

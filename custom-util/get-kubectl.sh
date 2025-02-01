@@ -40,6 +40,13 @@ tar -xzvf /tmp/kubecolor_0.4.0_linux_amd64.tar.gz kubecolor
 mv kubecolor /usr/local/bin/kubecolor
 chmod +x /usr/local/bin/kubecolor
 
+# get kubectl rsh 
+#
+curl -L https://github.com/nilic/kubectl-rsh/releases/download/v0.1.0/kubectl-rsh_v0.1.0_linux_amd64.tar.gz -o /tmp/kubectl-rsh_v0.1.0_linux_amd64.tar.gz
+tar -xzvf /tmp/kubectl-rsh_v0.1.0_linux_amd64.tar.gz kubectl-rsh 
+mv kubectl-rsh /usr/local/bin/kubectl-rsh
+chmod +x /usr/local/bin/kubectl-rsh
+
 # helmify
 curl -L https://github.com/arttor/helmify/releases/download/v0.4.15/helmify_Linux_x86_64.tar.gz -o /tmp/helmify_Linux_x86_64.tar.gz
 tar -xzvf /tmp/helmify_Linux_x86_64.tar.gz helmify
