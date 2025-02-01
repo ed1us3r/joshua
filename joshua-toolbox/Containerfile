@@ -2,14 +2,13 @@ FROM registry.access.redhat.com/ubi9/ubi-init:latest  as getter
 
 WORKDIR /tmp/
 
-RUN dnf install -y git
+RUN dnf install -y python3 python git
 
 # Prepare next Step
 COPY ../custom-util/* .
 
-
 # Install custom util
-RUN ./get-cosign.sh && ./get-kubectl.sh && ./get-powerline-shell
+RUN ./get-cosign.sh && ./get-kubectl.sh && ./get-powerline-shell.sh
 
 
 FROM registry.fedoraproject.org/fedora-toolbox:39
