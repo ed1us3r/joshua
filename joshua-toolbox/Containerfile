@@ -11,7 +11,7 @@ COPY ../custom-util/* .
 RUN ./get-cosign.sh && ./get-kubectl.sh && ./get-powerline-shell.sh
 
 
-FROM registry.fedoraproject.org/fedora-toolbox:39
+FROM registry.fedoraproject.org/fedora-toolbox:41
 
 ARG NAME=joshua-toolbox
 ARG TYPE=toolbox
